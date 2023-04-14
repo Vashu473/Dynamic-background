@@ -5,14 +5,7 @@ const getRandomImage = async (event) => {
   const img3 = document.getElementById("img3");
   const inp = document.getElementById("inp").value;
 
-  const res = await fetch("http://localhost/getImage", {
-    method: "POST",
-    body: JSON.stringify({ img: inp }),
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const res = await fetch("https://source.unsplash.com/1600x900/?nature");
   const result = await res.json();
   console.log(result);
   img1.src = result.msg;
