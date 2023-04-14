@@ -6,7 +6,8 @@ let modal = document.getElementById("exampleModal");
 let img2_1 = document.getElementById("img2-1");
 let img2_2 = document.getElementById("img2-2");
 let img2_3 = document.getElementById("img2-3");
-
+let closeBtn = document.getElementById("btn");
+let classImage = document.getElementsByClassName("image2");
 const storeImg = [];
 
 const submitFunction = async (event) => {
@@ -20,10 +21,21 @@ const submitFunction = async (event) => {
     img2_2.src = storeImg[1];
     img2_3.src = storeImg[2];
   }
-  // img1.src = res.url;
-  // img2.src = res.url;
-  // img3.src = res.url;
 };
 form.addEventListener("submit", submitFunction);
 
 // find image
+for (let i = 0; i < classImage.length; i++) {
+  classImage[i].addEventListener("click", () => {
+    let source = classImage[i].src;
+    img1.src = source;
+    img2.src = source;
+    img3.src = source;
+  });
+}
+
+// close modal
+
+closeBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+});
