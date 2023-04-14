@@ -1,18 +1,29 @@
-const getRandomImage = async (event) => {
-  event.preventDefault();
-  const img1 = document.getElementById("img1");
-  const img2 = document.getElementById("img2");
-  const img3 = document.getElementById("img3");
-  const inp = document.getElementById("inp").value;
-
-  const res = await fetch("https://source.unsplash.com/1600x900/?nature");
-  const result = await res.json();
-  console.log(result);
-  img1.src = result.msg;
-  img2.src = result.msg;
-  img3.src = result.msg;
-};
-
 let form = document.getElementById("form");
+let img1 = document.getElementById("img1");
+let img2 = document.getElementById("img2");
+let img3 = document.getElementById("img3");
+let modal = document.getElementById("exampleModal");
+let img2_1 = document.getElementById("img2-1");
+let img2_2 = document.getElementById("img2-2");
+let img2_3 = document.getElementById("img2-3");
 
-form.addEventListener("submit", getRandomImage);
+const storeImg = [];
+
+const submitFunction = async (event) => {
+  event.preventDefault();
+  let input = document.getElementById("inp").value;
+  const res = await fetch(`https://source.unsplash.com/1600x900/?${input}`);
+  storeImg.push(res.url);
+  if (storeImg.length == 3) {
+    modal.style.display = "block";
+    img2_1.src = storeImg[0];
+    img2_2.src = storeImg[1];
+    img2_3.src = storeImg[2];
+  }
+  // img1.src = res.url;
+  // img2.src = res.url;
+  // img3.src = res.url;
+};
+form.addEventListener("submit", submitFunction);
+
+// find image
